@@ -1,0 +1,23 @@
+﻿{
+
+  "manifest_version": 2,
+  "name": "Legacy Edge Extensions",
+  "description": "New Features for Legacy Edge",
+  "version": "1.0",
+  "author": "ShortDevelopment",
+
+  "background": {
+    "scripts": [ "background.js" ],
+    "persistent": true
+  },
+
+  "permissions": [
+    "nativeMessaging",
+    "activeTab"
+  ],
+
+  "icons": {
+    "25": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png",
+    "48": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png"
+  }
+}

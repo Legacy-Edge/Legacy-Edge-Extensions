@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<Package
+	xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+	xmlns:rescap="http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+	xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
+	xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+	xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+	xmlns:uap4="http://schemas.microsoft.com/appx/manifest/uap/windows10/4"
+	IgnorableNamespaces="uap uap3 mp rescap build">
+
+	<Identity
+	  Name="9aad485a-f48e-440e-86a9-5d75360b1bb2"
+	  Publisher="CN=ShortDevelopment"
+	  Version="1.0.0.0" />
+
+	<mp:PhoneIdentity PhoneProductId="9aad485a-f48e-440e-86a9-5d75360b1bb2" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+
+	<Properties>
+		<DisplayName>Legacy Edge Extensions</DisplayName>
+		<PublisherDisplayName>ShortDevelopment</PublisherDisplayName>
+		<Logo>Assets\StoreLogo.png</Logo>
+	</Properties>
+
+	<Dependencies>
+		<TargetDeviceFamily Name="Windows.Universal" MinVersion="10.0.15063.0" MaxVersionTested="10.0.15063.0" />
+	</Dependencies>
+
+	<Resources>
+		<Resource Language="x-generate"/>
+	</Resources>
+
+	<Applications>
+		<Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="Legacy_Edge_Extensions_Host.App">
+			<uap:VisualElements AppListEntry="none"
+			  DisplayName="Legacy Edge Extensions"
+			  Square150x150Logo="Assets\Square150x150Logo.png"
+			  Square44x44Logo="Assets\Square44x44Logo.png"
+			  Description="Legacy Edge Extensions"
+			  BackgroundColor="transparent">
+				<uap:DefaultTile Square71x71Logo="Assets\SmallTile.png" Wide310x150Logo="Assets\WideTile.png" Square310x310Logo="Assets\LargeTile.png"/>
+				<uap:SplashScreen Image="Assets\SplashScreen.png"/>
+			</uap:VisualElements>
+			<Extensions>
+				<!-- https://github.com/MicrosoftEdge/MicrosoftEdge-Extensions-Demos/blob/master/SecureInput/NativeMessagingHostInProcess/Package.appxmanifest -->
+				<uap:Extension Category="windows.protocol">
+					<uap:Protocol Name="msghost1" />
+				</uap:Extension>
+				<!-- https://docs.microsoft.com/de-de/windows/uwp/launch-resume/how-to-create-and-consume-an-app-service -->
+				<uap:Extension Category="windows.appService">
+					<uap3:AppService Name="EdgeExtensionsHostService"/>
+				</uap:Extension>
+				<!-- https://docs.microsoft.com/en-us/microsoft-edge/edgehtml/extensions/guides/native-messaging -->
+				<uap3:Extension Category="windows.appExtension">
+					<uap3:AppExtension
+						Name="com.microsoft.edge.extension"
+						Id="EdgeExtension"
+						PublicFolder="Extension"
+						DisplayName="ms-resource:DisplayName">
+						<uap3:Properties>
+							<Capabilities>
+								<Capability Name="websiteContent" />
+								<Capability Name="websiteInfo" />
+								<Capability Name="browserStorage" />
+							</Capabilities>
+						</uap3:Properties>
+					</uap3:AppExtension>
+				</uap3:Extension>
+			</Extensions>
+		</Application>
+	</Applications>
+
+	<Capabilities>
+		<Capability Name="internetClient" />
+	</Capabilities>
+</Package>
