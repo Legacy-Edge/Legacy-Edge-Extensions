@@ -179,9 +179,11 @@
     <Content Include="Assets\WideTile.scale-150.png" />
     <Content Include="Assets\WideTile.scale-200.png" />
     <Content Include="Assets\WideTile.scale-400.png" />
-    <Content Include="Extension\background.js">
+    <Content Include="Extension\background\native_messaging.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Extension\background\blank_page.js" />
+    <Content Include="Extension\content\client.js" />
     <Content Include="Extension\res\MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

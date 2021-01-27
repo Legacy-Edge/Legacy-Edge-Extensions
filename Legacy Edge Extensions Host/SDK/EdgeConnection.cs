@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.ApplicationModel.AppService;
 using Windows.ApplicationModel.Background;
+using Windows.ApplicationModel.DataTransfer;
 using Windows.Foundation.Collections;
 
 namespace Legacy_Edge_Extensions_Host.SDK
@@ -67,6 +68,9 @@ namespace Legacy_Edge_Extensions_Host.SDK
 
         async void test()
         {
+            //DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
+            //DataTransferManager.ShowShareUI();
+            //return;
             try
             {
                 var xyz = await ExecuteJSFunction("return document.body");

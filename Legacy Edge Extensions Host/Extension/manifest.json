@@ -7,17 +7,36 @@
   "author": "ShortDevelopment",
 
   "background": {
-    "scripts": [ "background.js" ],
+    "scripts": [ "background/blank_page.js", "background/native_messaging.js" ],
     "persistent": true
   },
 
   "permissions": [
+    "https://bedrock.dev/*",
+    "https://www.msn.com/*",
     "nativeMessaging",
-    "activeTab"
+    "contextMenus",
+    "tabs",
+    "storage",
+    "activeTab",
+    "<all_urls>"
   ],
 
   "icons": {
     "25": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png",
     "48": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png"
-  }
+  },
+
+  "content_security_policy": "script-src 'unsafe-eval'; object-src 'self'",
+
+  "content_scripts": [
+    {
+      "matches": [
+        "https://bedrock.dev/*"
+      ],
+      "js": [ "content/client.js" ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ]
 }

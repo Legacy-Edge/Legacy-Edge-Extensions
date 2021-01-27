@@ -57,13 +57,7 @@
 						Id="EdgeExtension"
 						PublicFolder="Extension"
 						DisplayName="ms-resource:DisplayName">
-						<uap3:Properties>
-							<Capabilities>
-								<Capability Name="websiteContent" />
-								<Capability Name="websiteInfo" />
-								<Capability Name="browserStorage" />
-							</Capabilities>
-						</uap3:Properties>
+						
 					</uap3:AppExtension>
 				</uap3:Extension>
 			</Extensions>
