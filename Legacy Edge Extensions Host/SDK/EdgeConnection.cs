@@ -68,9 +68,6 @@ namespace Legacy_Edge_Extensions_Host.SDK
 
         async void test()
         {
-            //DataTransferManager dataTransferManager = DataTransferManager.GetForCurrentView();
-            //DataTransferManager.ShowShareUI();
-            //return;
             try
             {
                 var xyz = await ExecuteJSFunction("return document.body");

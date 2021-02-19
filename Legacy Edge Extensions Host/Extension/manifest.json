@@ -6,14 +6,12 @@
   "version": "1.0",
   "author": "ShortDevelopment",
 
-  "background": {
-    "scripts": [ "background/blank_page.js", "background/native_messaging.js" ],
-    "persistent": true
+  "icons": {
+    "25": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png",
+    "48": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png"
   },
 
   "permissions": [
-    "https://bedrock.dev/*",
-    "https://www.msn.com/*",
     "nativeMessaging",
     "contextMenus",
     "tabs",
@@ -22,21 +20,27 @@
     "<all_urls>"
   ],
 
-  "icons": {
-    "25": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png",
-    "48": "res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png"
-  },
-
   "content_security_policy": "script-src 'unsafe-eval'; object-src 'self'",
+
+  "background": {
+    "scripts": [ "background/blank_page.js", "background/native_messaging.js" ],
+    "persistent": true
+  },
 
   "content_scripts": [
     {
       "matches": [
-        "https://bedrock.dev/*"
+        "https://*/*",
+        "http://*/*"
       ],
-      "js": [ "content/client.js" ],
-      "run_at": "document_start",
-      "all_frames": true
+      "js": [ "content/client.js" ]
     }
-  ]
+  ],
+
+  "options_ui": {
+    "page": "settings/settings.html",
+    "open_in_tab": true
+  },
+
+  "web_accessible_resources": [ "settings/settings.html" ]
 }

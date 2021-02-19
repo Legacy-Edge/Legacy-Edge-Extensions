@@ -1,8 +1,7 @@
 ﻿
-console.info("Extensions loaded!");
-
-const inject = document.createElement("script");
-inject.innerHTML = `
+const nativeFunctionPointers = {
+    matchMedia: window.matchMedia
+}
 
 class MediaQueryListReturn {
     /**
@@ -62,14 +61,13 @@ class MediaQueryListReturn {
     }
 }
 
-window.matchMediaOld = window.matchMedia;
-
 /**
  * 
  * @param {string} query
  * @returns {MediaQueryList}
  */
 window.matchMedia = function (query) {
+    console.info(query);
     const caseInsensitiveQuery = query.toLocaleLowerCase();
     if (caseInsensitiveQuery.includes("prefers-color-scheme")) {
         let matches = false;
@@ -80,9 +78,7 @@ window.matchMedia = function (query) {
         }
         return new MediaQueryListReturn(query, matches);
     } else {
-        return matchMediaOld(query);
+        return nativeFunctionPointers.matchMedia(query);
     }
 }
-`;
 
-top.document.querySelector("html").appendChild(inject);

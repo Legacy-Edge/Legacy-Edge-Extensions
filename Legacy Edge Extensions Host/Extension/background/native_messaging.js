@@ -49,4 +49,4 @@ port.onDisconnect.addListener(() => {
 
 });
 // port.postMessage("Hallo!");
-console.info("Extension started! x");
+console.info("Extension started!");

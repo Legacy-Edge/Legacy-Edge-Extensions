@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Einstellungen</title>
+
+    <style>
+        body {
+            margin: 0px;
+            font-family: 'Segoe UI', Verdana, sans-serif;
+            user-select: none;
+            -ms-user-select: none;
+            cursor: default !important;
+        }
+
+        * {
+            cursor: inherit;
+        }
+
+        content {
+            display: block;
+            width: 100%;
+            box-sizing: border-box;
+            padding: 5px;
+        }
+    </style>
+
+    <!-- #region Badge -->
+    <style>
+        .badge {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100px;
+            height: 100px;
+            border-bottom-right-radius: 50%;
+            padding: 10px;
+            background-color: #19353D;
+            background-image: url('../res/MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png');
+            background-size: 50%;
+            background-position: 65% 65%;
+            background-repeat: no-repeat;
+            transform: translate(-25%, -25%);
+        }
+    </style>
+    <!-- #endregion -->
+    <!-- #region Header -->
+    <style>
+        header {
+            display: block;
+            height: 100px;
+            width: 100%;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            padding-left: 150px;
+        }
+    </style>
+    <!-- #endregion -->
+
+    <style>
+        content {
+            display: block;
+            padding: 0px 30px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
+
+    <!-- #region Input -->
+
+    <style>
+        .input-container {
+            display: block;
+            margin: 5px;
+        }
+    </style>
+
+    <!-- #region Reveal -->
+    <!-- https://docs.microsoft.com/en-us/windows/uwp/design/style/reveal -->
+    <script>
+        window.addEventListener("load", () => {
+            const revealSize = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--reveal-size").replace("px"));
+            console.log(revealSize);
+            document.querySelectorAll(".reveal-button").forEach(/** @param {HTMLElement} ele */(ele) => {
+                /** @type {HTMLElement} */
+                const hoverLight = ele.querySelector(".hoverLight");
+                ele.addEventListener("mousemove", (e) => {
+                    /** @type {HTMLElement} */
+                    const target = e.target;
+                    const rect = target.getBoundingClientRect();
+                    hoverLight.style.backgroundPositionX = `${e.clientX - rect.left - (revealSize / 2)}px`;
+                    hoverLight.style.backgroundPositionY = `${e.clientY - rect.top - (revealSize / 2)}px`;
+                });
+            });
+        });
+    </script>
+    <style>
+        :root {
+            --reveal-size: 200px;
+        }
+
+        .reveal-button {
+            box-sizing: border-box;
+            cursor: pointer;
+            background: #F0F0F0;
+            position: relative;
+            border: none;
+            display: grid;
+            grid-template-columns: auto;
+            grid-template-rows: 1fr;
+            grid-template-areas: "main";
+            padding: 0px;
+            transition: transform 0.2s;
+        }
+
+            .reveal-button:active {
+                transform: scale(0.95);
+            }
+
+            .reveal-button > content {
+                padding: 7.5px 25px;
+                grid-area: main;
+            }
+
+            .reveal-button > reveal {
+                display: block;
+                width: 100%;
+                height: 100%;
+                /*position: absolute;*/
+                top: 0px;
+                left: 0px;
+                background: transparent;
+                box-sizing: border-box;
+                grid-area: main;
+            }
+
+            .reveal-button:hover > .backplate {
+                background: rgba(0, 0, 0, 0.1);
+            }
+
+            .reveal-button:hover > .hoverLight {
+                --reveal-hoverLight-brightness: 0.6;
+                background: radial-gradient(rgba(255, 255, 255, var(--reveal-hoverLight-brightness)), transparent 30%);
+                background-repeat: no-repeat;
+                background-size: var(--reveal-size) var(--reveal-size);
+                background-position: center;
+            }
+
+            .reveal-button:active > .hoverLight {
+                --reveal-hoverLight-brightness: 0.8;
+            }
+
+            .reveal-button:hover > .border {
+                border: 2px solid gray;
+            }
+    </style>
+    <!-- #endregion -->
+    <!-- #region CheckBox -->
+    <style>
+        .checkbox-container {
+            display: inline-grid;
+            grid-template-columns: auto 1fr;
+            grid-template-areas: "checkbox text";
+            height: 30px;
+        }
+
+            .checkbox-container > div {
+                display: flex;
+                align-items: center;
+            }
+
+        .checkbox {
+            display: block;
+            grid-area: checkbox;
+            width: 20px;
+            height: 20px;
+            box-sizing: border-box;
+            border-radius: 2.5px;
+            border: 1px solid lightgray;
+            cursor: pointer;
+        }
+
+            .checkbox:hover {
+                border-color: gray;
+            }
+
+        .checkbox-container:active > div > .checkbox > label {
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .checkbox > input[type=checkbox] {
+            display: none;
+        }
+
+        .checkbox > label {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .checkbox > input[type=checkbox]:checked ~ label {
+            background-image: url('../res/done-black-18dp.svg');
+        }
+
+        .checkbox-container > div > label {
+            display: block;
+            grid-area: text;
+            cursor: pointer !important;
+            margin-left: 5px;
+        }
+    </style>
+    <!-- #endregion -->
+    <!-- #region Input -->
+    <style>
+        .win10-input-text {
+            border: 2px solid #999999;
+            padding: 5px 8px;
+            cursor: text !important;
+        }
+
+            .win10-input-text:not([disabled]):hover {
+                border-color: #666666;
+            }
+
+            .win10-input-text:not([disabled]):focus {
+                border-color: #0076D7 !important;
+            }
+    </style>
+    <!-- #endregion -->
+    <!-- #endregion -->
+
+    <script>
+        window.addEventListener("load", () => {
+            (() => {
+                const checkBox = document.querySelector("#new-tab-page-replacement-enabled");
+                const inputText = document.querySelector("#new-tab-page-replacement-url");
+                inputText.disabled = !checkBox.checked;
+            })();
+        });
+    </script>
+
+</head>
+<body>
+    <header>
+        <h1>Legacy Edge Extensions</h1>
+    </header>
+
+    <div class="badge"></div>
+
+    <content>
+        <div class="group">
+            <h3>Generell</h3>
+            <div class="input-container">
+                <div class="checkbox-container">
+                    <div>
+                        <div class="checkbox">
+                            <input id="dark-mode-enabled" type="checkbox" onchange="OnDarkModeToggle(this, event);" />
+                            <label for="dark-mode-enabled"></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="dark-mode-enabled">
+                            Dark-Mode
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="group">
+            <h3>Neuer Tab</h3>
+            <div class="input-container">
+                <div class="checkbox-container">
+                    <div>
+                        <div class="checkbox">
+                            <input id="new-tab-page-replacement-enabled" type="checkbox" onchange="OnReplaceNewTabSiteToggle(this, event);" />
+                            <label for="new-tab-page-replacement-enabled"></label>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="new-tab-page-replacement-enabled">
+                            Standartseite ersetzten
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="input-container">
+                <input type="text" class="win10-input-text" placeholder="URL" id="new-tab-page-replacement-url" />
+            </div>
+            <script>
+                /**
+                 *
+                 * @param ele {HTMLInputElement}
+                 * @param e {Event}
+                 */
+                function OnReplaceNewTabSiteToggle(ele, e) {
+                    /** @type {HTMLInputElement} */
+                    const inputText = document.querySelector("#new-tab-page-replacement-url");
+                    inputText.disabled = !ele.checked;
+                }
+            </script>
+        </div>
+
+        <br />
+
+        <div class="input-container">
+            <button class="reveal-button">
+                <reveal class="backplate"></reveal>
+                <reveal class="hoverLight"></reveal>
+                <content>Speichern</content>
+                <reveal class="border"></reveal>
+            </button>
+        </div>
+    </content>
+
+</body>
+</html>

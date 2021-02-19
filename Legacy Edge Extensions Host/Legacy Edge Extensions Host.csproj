@@ -184,9 +184,12 @@
     </Content>
     <Content Include="Extension\background\blank_page.js" />
     <Content Include="Extension\content\client.js" />
+    <Content Include="Extension\content\inject\dark_mode.js" />
+    <Content Include="Extension\res\done-black-18dp.svg" />
     <Content Include="Extension\res\MicrosoftEdgeSquare44x44.targetsize-48_contrast-black.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Extension\settings\settings.html" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -223,6 +226,11 @@
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties extension_4manifest_1json__JsonSchema="document_idle" />
+    </VisualStudio>
+  </ProjectExtensions>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
