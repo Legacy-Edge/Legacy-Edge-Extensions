@@ -1,9 +1,4 @@
-﻿
-const nativeFunctionPointers = {
-    matchMedia: window.matchMedia
-}
-
-class MediaQueryListReturn {
+﻿class MediaQueryListReturn {
     /**
      * 
      * @param {string} media
@@ -50,6 +45,9 @@ class MediaQueryListReturn {
     addListener(type, options) {
 
     }
+    addEventListener(type, options) {
+
+    }
     /**
      * 
      * @param {string} type
@@ -61,13 +59,14 @@ class MediaQueryListReturn {
     }
 }
 
+window.matchMediaOld = window.matchMedia;
+
 /**
  * 
  * @param {string} query
  * @returns {MediaQueryList}
  */
 window.matchMedia = function (query) {
-    console.info(query);
     const caseInsensitiveQuery = query.toLocaleLowerCase();
     if (caseInsensitiveQuery.includes("prefers-color-scheme")) {
         let matches = false;
@@ -78,7 +77,6 @@ window.matchMedia = function (query) {
         }
         return new MediaQueryListReturn(query, matches);
     } else {
-        return nativeFunctionPointers.matchMedia(query);
+        return matchMediaOld(query);
     }
 }
-

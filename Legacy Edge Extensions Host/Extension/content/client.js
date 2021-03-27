@@ -51,6 +51,9 @@ class MediaQueryListReturn {
     addListener(type, options) {
 
     }
+    addEventListener(type, options) {
+
+    }
     /**
      * 
      * @param {string} type

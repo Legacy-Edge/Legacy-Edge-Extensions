@@ -33,7 +33,8 @@
         "https://*/*",
         "http://*/*"
       ],
-      "js": [ "content/client.js" ]
+      "js": [ "content/client.js" ],
+      "run_at": "document_start"
     }
   ],
 
