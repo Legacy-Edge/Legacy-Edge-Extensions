@@ -9,5 +9,13 @@ Examples of native messaging: https://github.com/MicrosoftEdge/MicrosoftEdge-Ext
   - [ ] JSON-Anzeige
   - [ ] Implement `#:~:text=` Query
   - [ ] Take Element-Snapshots (ContextMenu)
+  - [ ] Share Api
+  - [ ] Clipboard Api
+  - [ ] Promise.finally
   - [ ] ???
 - [ ] Settings-Page   
+  - [x] Options Page Button
+  - [x] UI Library
+  - [ ] Save Settings
+  - [ ] Use Settings
+  - [ ] ??? 
