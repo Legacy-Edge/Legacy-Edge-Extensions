@@ -1,4 +1,8 @@
-﻿class MediaQueryListReturn {
+﻿/**
+ * Enables Dark-Mode Support
+ * */
+
+class MediaQueryListReturn {
     /**
      * 
      * @param {string} media

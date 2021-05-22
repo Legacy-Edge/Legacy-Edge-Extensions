@@ -34,7 +34,9 @@
         "http://*/*"
       ],
       "js": [ "content/client.js" ],
-      "run_at": "document_start"
+      "run_at": "document_start",
+      "match_about_blank": true,
+      "all_frames": true
     }
   ],
 
@@ -45,5 +47,10 @@
     "open_in_tab": true
   },
 
-  "web_accessible_resources": [ "settings/settings.html" ]
+  "web_accessible_resources": [
+    "settings/settings.html",
+    "content/inject/dark_mode.js",
+    "content/inject/polyfill.js",
+    "content/inject/custom-elements.js"
+  ]
 }

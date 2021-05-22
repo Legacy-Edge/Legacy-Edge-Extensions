@@ -1,91 +1,51 @@
 ﻿
 console.info("Extensions loaded!");
 
-const inject = document.createElement("script");
-inject.innerHTML = `
+loadLocalScript("dark_mode");
+loadLocalScript("polyfill");
+loadLocalScript("custom-elements");
+// loadRemoteScript("https://unpkg.com/@webcomponents/custom-elements");
 
-class MediaQueryListReturn {
-    /**
-     * 
-     * @param {string} media
-     * @param {boolean} matches
-     */
-    constructor(media, matches) {
-        /**
-         * @type {string}
-         * */
-        this.media = media;
-        /**
-         * @type {boolean}
-         * */
-        this.matches = matches;
-    }
-    /**
-     * @returns {((this: MediaQueryList, ev: MediaQueryListEvent) => any) | null}
-     * */
-    onchange() {
-
-    }
-    /**
-     * @deprecated
-     * @param {((this: MediaQueryList, ev: MediaQueryListEvent) => any) | null} listener
-     * @returns {void}
-     * */
-    addListener(listener) {
-
-    }
-    /**
-     * @deprecated
-     * @param {((this: MediaQueryList, ev: MediaQueryListEvent) => any) | null} listener
-     * @returns {void}
-     * */
-    removeListener(listener) {
-
-    }
-    /**
-     * 
-     * @param {string} type
-     * @param {boolean | AddEventListenerOptions} options
-     * @returns {void}
-     */
-    addListener(type, options) {
-
-    }
-    addEventListener(type, options) {
-
-    }
-    /**
-     * 
-     * @param {string} type
-     * @param {boolean | AddEventListenerOptions} options
-     * @returns {void}
-     */
-    removeEventListener(type, options) {
-
-    }
-}
-
-window.matchMediaOld = window.matchMedia;
+window.addEventListener("load", () => {
+    console.info("GitHub LazyLoading");
+    const scripts = document.querySelectorAll("script");
+    scripts.forEach((ele) => {
+        if (ele.hasAttribute("data-src")) {
+            ele.setAttribute("src", ele.getAttribute("data-src"));
+            console.log(ele);
+        }
+    });
+});
 
 /**
- * 
- * @param {string} query
- * @returns {MediaQueryList}
+ * Loads a local pollyfill
+ * @param {string} name
+ * @returns {void}
  */
-window.matchMedia = function (query) {
-    const caseInsensitiveQuery = query.toLocaleLowerCase();
-    if (caseInsensitiveQuery.includes("prefers-color-scheme")) {
-        let matches = false;
-        if (caseInsensitiveQuery.includes("dark")) {
-            matches = true;
-        } else {
-            matches = false;
-        }
-        return new MediaQueryListReturn(query, matches);
-    } else {
-        return matchMediaOld(query);
+async function loadLocalScript(name) {
+    try {
+        const basePath = `ms-browser-extension://${browser.runtime.id}/`;
+        const jsContent = await fetch(`${basePath}content/inject/${name}.js`).then((x) => x.text());
+        const ele = document.createElement("script");
+        ele.setAttribute("data-extension-name", name);
+        ele.innerHTML = jsContent;
+        top.document.querySelector("html").appendChild(ele);
+    } catch (e) {
+        console.error(e);
     }
 }
-`;
 
-top.document.querySelector("html").appendChild(inject);
+/**
+ * Loads a remote pollyfill
+ * @param {string} src
+ * @returns {void}
+ */
+function loadRemoteScript(src) {
+    try {
+        const ele = document.createElement("script");
+        ele.src = src;
+        top.document.querySelector("html").appendChild(ele);
+    } catch (e) {
+        console.error(e);
+    }
+}
